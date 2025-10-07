@@ -12,6 +12,14 @@ body {
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
   overflow: hidden; /* Prevent scrollbars if card goes slightly off-screen during animation */
   background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Subtle gradient background */
+  transition: background-color 0.4s ease, color 0.4s ease; /* Smooth transition for dark mode */
+}
+
+/* Dark Mode Body Styles */
+body.dark-mode {
+  background-color: #2c3e50; /* Darker background */
+  color: #ecf0f1; /* Lighter text */
+  background-image: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
 }
 
 /* Profile Card Styles */
@@ -22,15 +30,28 @@ body {
   border-radius: 20px; /* More rounded corners */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Softer, larger shadow */
   text-align: center;
-  transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smoother transitions */
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease, color 0.4s ease; /* Smooth transition */
   position: relative;
   overflow: hidden; /* Ensure content stays within rounded corners */
+}
+
+/* Dark Mode Card Styles */
+.card-profile.dark-mode-card {
+  background-color: #34495e; /* Darker card background */
+  color: #ecf0f1; /* Lighter text */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Stronger shadow in dark mode */
 }
 
 .card-profile:hover {
   transform: translateY(-8px) scale(1.02); /* More pronounced lift and slight scale */
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
 }
+
+/* Dark Mode Card Hover */
+.card-profile.dark-mode-card:hover {
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover in dark mode */
+}
+
 
 /* Profile Image */
 .card-profile img {
@@ -44,9 +65,21 @@ body {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Dark Mode Image Border */
+.card-profile.dark-mode-card img {
+  border-color: #8e44ad; /* Different accent color in dark mode */
+  box-shadow: 0 0 0 7px rgba(142, 68, 173, 0.3);
+}
+
 .card-profile img:hover {
   border-color: #6a5acd; /* Change border color on hover */
   box-shadow: 0 0 0 7px rgba(106, 90, 205, 0.3);
+}
+
+/* Dark Mode Image Hover */
+.card-profile.dark-mode-card img:hover {
+  border-color: #9b59b6;
+  box-shadow: 0 0 0 7px rgba(155, 89, 182, 0.4);
 }
 
 
@@ -56,6 +89,12 @@ body {
   font-size: 26px; /* Larger font for name */
   color: #2c3e50; /* Darker color for name */
   font-weight: 700; /* Bolder font weight */
+  transition: color 0.4s ease; /* Smooth transition */
+}
+
+/* Dark Mode Name */
+.card-profile.dark-mode-card h2 {
+  color: #ecf0f1; /* Lighter name color */
 }
 
 .card-profile p {
@@ -65,16 +104,31 @@ body {
   line-height: 1.5; /* Better readability */
   color: #555; /* Slightly softer color for description */
   margin-bottom: 25px; /* Space before button */
+  transition: color 0.4s ease, opacity 0.4s ease; /* Smooth transition */
 }
 
-/* Button Styles */
+/* Dark Mode Description */
+.card-profile.dark-mode-card p {
+  color: #bdc3c7; /* Lighter description color */
+  opacity: 0.9;
+}
+
+/* Button Group for layout */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Space between buttons */
+  margin-top: 25px; /* Space above buttons */
+}
+
+/* Sapa Saya Button Styles */
 #sapabutton {
   background-image: linear-gradient(45deg, #4a90e2 0%, #6a5acd 100%); /* Gradient background */
   color: white;
   border: none;
-  padding: 14px 30px; /* Larger padding */
+  padding: 14px 25px; /* Adjusted padding */
   border-radius: 30px; /* Pill-shaped button */
-  font-size: 18px; /* Larger font size */
+  font-size: 16px; /* Adjusted font size */
   cursor: pointer;
   box-shadow: 0 8px 20px rgba(74, 144, 226, 0.3); /* Softer shadow */
   transition: all 0.3s ease; /* Smooth transition for all properties */
@@ -82,6 +136,8 @@ body {
   font-weight: 500;
   letter-spacing: 0.5px;
   text-transform: uppercase; /* Make text uppercase */
+  flex-grow: 1; /* Allow it to grow */
+  max-width: 150px; /* Max width for consistency */
 }
 
 #sapabutton:hover {
@@ -95,6 +151,81 @@ body {
   box-shadow: 0 5px 15px rgba(74, 144, 226, 0.2);
 }
 
+/* Dark Mode Sapa Saya Button */
+.card-profile.dark-mode-card #sapabutton {
+  background-image: linear-gradient(45deg, #8e44ad 0%, #9b59b6 100%); /* Darker gradient */
+  box-shadow: 0 8px 20px rgba(142, 68, 173, 0.3);
+}
+
+.card-profile.dark-mode-card #sapabutton:hover {
+  background-image: linear-gradient(45deg, #9b59b6 0%, #8e44ad 100%);
+  box-shadow: 0 12px 25px rgba(155, 89, 182, 0.4);
+}
+
+
+/* Dark Mode Toggle Button Styles */
+#darkmodetoggle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%; /* Circular button */
+  background-color: #f0f2f5; /* Light background for the button */
+  border: 1px solid #ddd;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden; /* Hide overflowing icon */
+}
+
+#darkmodetoggle:hover {
+  background-color: #e0e2e5;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Icon styles for animation */
+#darkmodetoggle .light-icon,
+#darkmodetoggle .dark-icon {
+  position: absolute;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+#darkmodetoggle .light-icon {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#darkmodetoggle .dark-icon {
+  transform: translateY(100%); /* Start off-screen below */
+  opacity: 0;
+}
+
+/* When dark mode is active */
+#darkmodetoggle.active {
+  background-color: #555; /* Darker background for the button in dark mode */
+  border-color: #666;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+#darkmodetoggle.active:hover {
+  background-color: #666;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+#darkmodetoggle.active .light-icon {
+  transform: translateY(-100%); /* Move light icon off-screen above */
+  opacity: 0;
+}
+
+#darkmodetoggle.active .dark-icon {
+  transform: translateY(0); /* Bring dark icon into view */
+  opacity: 1;
+}
+
 /* Optional: Add a subtle overlay or pattern for extra flair */
 .card-profile::before {
   content: '';
@@ -106,4 +237,10 @@ body {
   background: radial-gradient(circle at top left, rgba(255,255,255,0.05) 0%, transparent 70%);
   pointer-events: none;
   z-index: 1; /* Ensure it's above other elements if necessary */
+  transition: background 0.4s ease;
+}
+
+/* Dark Mode Card before element */
+.card-profile.dark-mode-card::before {
+  background: radial-gradient(circle at top left, rgba(0,0,0,0.1) 0%, transparent 70%);
 }
